@@ -1,16 +1,14 @@
-import math
-
 import numpy as np
 import pandas as pd
 
 
-def prepare_data(filepath, dataset_name):
+def prepare_data(dataset_name):
     if dataset_name == "adult":
-        return __prepare_adult(filepath)
+        return __prepare_adult("data/adult.data")
     if dataset_name == "breast-cancer-wisconsin":
-        return __prepare_breast_cancer(filepath)
+        return __prepare_breast_cancer("data/breast-cancer-wisconsin.data")
     if dataset_name == "custom":
-        return __prepare_custom(filepath)
+        return __prepare_custom("data/custom.data")
 
     raise ValueError("invalid dataset")
 
@@ -69,19 +67,13 @@ def __prepare_custom(filepath):
     return data
 
 
-def split_data_into_test_train_arrays(data, test_part):
+def split_data(data):
     outcome_column_index = len(data.columns) - 1
     data_array = data.to_numpy()
-    np.random.shuffle(data_array)
     x = np.delete(data_array, outcome_column_index, 1)
     y = data_array[:, outcome_column_index]
 
-    len_test = math.floor(len(x) * test_part)
-    len_train = len(x) - len_test
-    x_train, x_test = np.split(x, [len_train])
-    y_train, y_test = np.split(y, [len_train])
-
-    return x_train, y_train, x_test, y_test
+    return x, y
 
 
 def encode_categorical_data(data, columns):
