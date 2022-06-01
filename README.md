@@ -7,7 +7,7 @@ The goal of the project is to apply subgradient method to Support Vector Machine
 
 **Packages**: numpy, pandas, matplotlib.
 
-### Results
+### Some results
 
 **Robustness tests**
 <table>
