@@ -19,7 +19,7 @@ The goal of the project is to apply subgradient method to Support Vector Machine
 </table>
 
 **Performance plots
-(X-axis is the number of descent iterations, mean values are taken via the 5-fold cross-validation)**
+(mean values are taken via the 5-fold cross-validation)**
 <table>
          <tr>
             <td><img src="measurements/objective_func_value_over_iterations.png"></td>
