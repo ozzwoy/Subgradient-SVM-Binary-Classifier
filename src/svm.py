@@ -2,8 +2,6 @@ import math
 from enum import Enum
 from functools import partial
 
-import numpy as np
-
 from subgradient_descent import SubgradientDescent
 
 
@@ -86,14 +84,9 @@ class SupportVectorMachine:
         else:
             step_size_rule = backtracking_line_search
 
-        if self.batch_size is None:
-            descent = SubgradientDescent(partial(self.loss.value_at, _lambda=self.regularizer),
-                                         partial(self.loss.subgradient_at, _lambda=self.regularizer),
-                                         step_size_rule)
-        else:
-            descent = SubgradientDescent(partial(self.loss.value_at, _lambda=self.regularizer),
-                                         partial(self.loss.subgradient_at, _lambda=self.regularizer),
-                                         step_size_rule, self.batch_size)
+        descent = SubgradientDescent(partial(self.loss.value_at, _lambda=self.regularizer),
+                                     partial(self.loss.subgradient_at, _lambda=self.regularizer),
+                                     step_size_rule, self.batch_size)
 
         opt = descent.execute(train_x, train_y, self.iterations)
         self.optimizer = opt

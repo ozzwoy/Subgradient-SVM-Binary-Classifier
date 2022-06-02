@@ -5,7 +5,7 @@ import numpy as np
 
 class SubgradientDescent:
 
-    def __init__(self, calc_function, calc_subgradient, calc_step_size, batch_size=None):
+    def __init__(self, calc_function, calc_subgradient, calc_step_size, batch_size):
         self.calc_function = calc_function
         self.calc_subgradient = calc_subgradient
         self.calc_step_size = calc_step_size
